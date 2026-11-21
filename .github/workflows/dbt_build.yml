@@ -11,11 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
       - run: uv sync
       - run: uv run python scripts/download_data.py
-      - run: uv run dbt build --profiles-dir ../ci
+      - run: uv run dbt build --profiles-dir ci
         working-directory: analytics
       - run: |
           gh release create warehouse --notes "Warehouse — auto-built by dbt" || true
